@@ -7,9 +7,15 @@ Gem::Specification.new do |s|
   s.version     = Hearken::VERSION
   s.authors     = ["Mark Ryall"]
   s.email       = ["mark@ryall.name"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/markryall/hearken"
+  s.summary     = "command line music player"
+  s.description = <<EOF
+A command line tool to enqueue and play music tracks.
+
+This also extracts the tags from a collection of folders.
+
+This replaces and combines the functionality from a couple of other gems (audio_library and songbirdsh).
+EOF
 
   s.rubyforge_project = "hearken"
 
