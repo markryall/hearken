@@ -1,7 +1,7 @@
 require 'thor'
 
 require 'hearken/version'
-require 'hearken/indexing/indexer'
+require 'hearken/indexing'
 
 module Hearken
   class Cli < Thor

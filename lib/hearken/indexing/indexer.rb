@@ -1,10 +1,5 @@
-module Hearken
-  module Indexing
-    PATH = File.expand_path('~')+'/.music'
-  end
-end
-
 require 'splat'
+require 'hearken/indexing/persistant_traverser'
 
 class Hearken::Indexing::Indexer
   def initialize path
@@ -14,14 +9,14 @@ class Hearken::Indexing::Indexer
   def execute
     start = Time.now
     count = 0
-    #traverser = AudioLibrary::PersistantTraverser.new ARGV.shift, ARGV.shift
+    traverser = Hearken::Indexing::PersistantTraverser.new @path, Hearken::Indexing::PATH
 
-    #traverser.each do |audio_file|
-    #  count += 1
-    #  show_progress start, count if count % 1000 == 0
-    #end
+    traverser.each do |audio_file|
+      count += 1
+      show_progress start, count if count % 1000 == 0
+    end
 
-    #show_progress start, count
+    show_progress start, count
 
     (File.dirname(__FILE__)+'/../../../media/applause.mp3').to_player
   end
