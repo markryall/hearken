@@ -44,6 +44,5 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
-* Add console
 * Get working on linux
 * Get working on windows
