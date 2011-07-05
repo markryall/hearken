@@ -8,5 +8,13 @@ module Hearken
     def version
       puts "Current version is "+Hearken::VERSION
     end
+
+    desc 'index', 'Reindexes a music collection'
+    def index
+    end
+
+    desc 'console', 'Enters console for queuing and playing tracks'
+    def console
+    end
   end
 end

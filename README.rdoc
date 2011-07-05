@@ -1,0 +1,50 @@
+= Hearken
+
+This is a command line shell for queuing and playing music tracks.
+
+It also extracts id3 tags from audio files for faster search.
+
+This will eventually be platform independent but at this stage has only been used on mac os x
+
+= Usage
+
+Here you sit expectantly in front of a computer at the command line.
+
+== Install
+
+    gem install hearken
+
+== Dependencies
+
+Tags are currently extracted using ffmpeg.  On mac os x, this can be installed easily using brew:
+
+    brew install ffmpeg
+
+== Indexing tracks
+
+    hearken index DIRECTORY
+
+Will create a track index at ~/.hearken.  Note that this might take a while the first time you run it.
+
+Subsequent runs will only query tags for new or modified files so should be fairly fast.
+
+== Console
+
+    hearken console
+
+== Commands
+
+    ?
+
+will list all commands
+
+    ? <command>
+
+will describe the use and purpose of a particular command
+
+= Future plans for world domination
+
+* Add indexer
+* Add console
+* Get working on linux
+* Get working on windows
