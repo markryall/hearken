@@ -1,0 +1,11 @@
+= next
+
+* Fixed bug in setup_scrobbling command
+
+= 0.0.2
+
+* First functioning version - combination of features from audio_library and songbirdsh
+
+= 0.0.1
+
+* Released empty gem (to claim the name before proceeding any further)

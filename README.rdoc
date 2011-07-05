@@ -44,5 +44,6 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
+* Growl integration
 * Get working on linux
 * Get working on windows

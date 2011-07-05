@@ -28,7 +28,7 @@ module Hearken
 
     def ask question
       print question
-      gets.chomp
+      $stdin.gets.chomp
     end
 
     def setup
