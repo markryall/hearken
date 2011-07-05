@@ -20,6 +20,5 @@ EOF
     end
     puts "Found #{matches.size} matches (ids have been placed on clipboard)"
     matches.join(' ').to_clipboard
-    @player.matches = matches
   end
 end

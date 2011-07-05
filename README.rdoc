@@ -20,6 +20,8 @@ Tags are currently extracted using ffmpeg.  On mac os x, this can be installed e
 
     brew install ffmpeg
 
+Growl notification (as new tracks are played) will work but only if 'growlnotify' is detected on the path.
+
 == Indexing tracks
 
     hearken index DIRECTORY
@@ -44,6 +46,5 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
-* Growl integration
 * Get working on linux
 * Get working on windows

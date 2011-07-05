@@ -2,17 +2,19 @@ require 'splat'
 
 require 'hearken/queue'
 require 'hearken/scrobbler'
+require 'hearken/notification/growl_notifier'
 require 'hearken/library'
 
 module Hearken
   class Player
     include Queue
     attr_reader :library, :scrobbler
-    attr_accessor :scrobbling, :matches
 
     def initialize preferences
       @scrobbler = Scrobbler.new preferences
-      @scrobbling = true
+      @scrobbler.enabled = true
+      @growl = Hearken::Notification::GrowlNotifier.new preferences
+      @notifiers = [@scrobbler, @growl]
       @library = Library.new preferences
       @library.reload
     end
@@ -41,11 +43,20 @@ module Hearken
       File.open('current_song', 'w') {|f| f.print track.to_yaml }
     end
 
+    def notify_started track
+      @notifiers.each {|notifier| notifier.started track if notifier.respond_to? :started}
+    end
+
+    def notify_finished track
+      @notifiers.each {|notifier| notifier.finished track if notifier.respond_to? :finished}
+    end
+
+    def scrobbling tf
+      @scrobbler.enabled = tf
+    end
+
     def start
-      if @pid
-        puts "Already started (pid #{@pid})"
-        return
-      end
+      return if @pid
       @pid = fork do
         player_pid = nil
         Signal.trap('TERM') do
@@ -66,15 +77,14 @@ module Hearken
             next
           end
           @library.with_track(id) do |track|
-            @scrobbler.update track if @scrobbling
+            notify_started track
             register track
             player_pid = path.to_player
             Process.wait player_pid
-            @scrobbler.scrobble track if @scrobbling
+            notify_finished track
           end
         end
       end
-      puts "Started (pid #{@pid})"
     end
 
     def stop

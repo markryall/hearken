@@ -8,19 +8,23 @@ module Hearken
 
     def initialize preferences
       @preferences = preferences
-      if preferences['lastfm']
-        debug "Configuring scrobbler with #{preferences['lastfm'].inspect}"
-        @scrobbler = SimpleScrobbler.new *%w{api_key secret user session_key}.map{|k| preferences['lastfm'][k]}
+    end
+
+    def enabled= tf
+      @scrobbler = nil
+      if @preferences['lastfm'] and tf
+        debug "Configuring scrobbler with #{@preferences['lastfm'].inspect}"
+        @scrobbler = SimpleScrobbler.new *%w{api_key secret user session_key}.map{|k| @preferences['lastfm'][k]}
       end
     end
 
-    def scrobble track
+    def finished track
       return unless @scrobbler
       debug "Scrobbling to last fm: #{track}"
       send_to_scrobbler :submit, track
     end
 
-    def update track
+    def started track
       return unless @scrobbler
       debug "Updating now listening with last fm: #{track}"
       send_to_scrobbler :now_playing, track

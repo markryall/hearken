@@ -29,6 +29,10 @@ class Hearken::Track
     "#{my(:search_id,:white)}: #{my(:artist, :yellow)} - #{my(:album,:cyan)} - #{my(:track,:magenta)} #{my(:title,:green)} (#{my(:time,:white)})"
   end
 
+  def to_short_s
+    "#{track} #{title}\n#{artist}\n#{album}"
+  end
+
   def my field, colour
     self.send(field).to_s.foreground(colour)
   end
