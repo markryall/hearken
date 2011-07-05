@@ -2,6 +2,7 @@ require 'thor'
 
 require 'hearken/version'
 require 'hearken/indexing'
+require 'hearken/console'
 
 module Hearken
   class Cli < Thor
@@ -17,6 +18,7 @@ module Hearken
 
     desc 'console', 'Enters console for queuing and playing tracks'
     def console
+      Hearken::Console.new.push
     end
   end
 end

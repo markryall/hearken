@@ -24,7 +24,7 @@ Tags are currently extracted using ffmpeg.  On mac os x, this can be installed e
 
     hearken index DIRECTORY
 
-Will create a track index at ~/.hearken.  Note that this might take a while the first time you run it.
+Will create a track index at ~/.music.  Note that this might take a while the first time you run it.
 
 Subsequent runs will only query tags for new or modified files so should be fairly fast.
 
@@ -44,7 +44,6 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
-* Add indexer
 * Add console
 * Get working on linux
 * Get working on windows

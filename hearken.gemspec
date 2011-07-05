@@ -25,4 +25,11 @@ EOF
   s.require_paths = ["lib"]
 
   s.add_dependency 'thor', '~>0'
+  s.add_dependency 'splat', '~>0'
+  s.add_dependency 'shell_shock', '~>0'
+  s.add_dependency 'simple_scrobbler', '~> 0'
+  s.add_dependency 'rainbow', '~> 1'
+
+  s.add_development_dependency 'rake', '~>0'
+  s.add_development_dependency 'rspec', '~>2'
 end
