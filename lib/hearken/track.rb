@@ -21,9 +21,6 @@ class Hearken::Track
     id.to_s 36
   end
 
-  def duration
-  end
-
   def search_string
     "#{self.artist.to_s.downcase}#{self.album.to_s.downcase}#{self.title.to_s.downcase}"
   end

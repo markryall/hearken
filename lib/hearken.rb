@@ -1,1 +1,3 @@
-require 'hearken/version'
+module Hearken
+  VERSION = '0.0.3'
+end
