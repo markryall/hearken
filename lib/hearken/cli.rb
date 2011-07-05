@@ -1,6 +1,7 @@
 require 'thor'
 
 require 'hearken/version'
+require 'hearken/indexing/indexer'
 
 module Hearken
   class Cli < Thor
@@ -9,8 +10,9 @@ module Hearken
       puts "Current version is "+Hearken::VERSION
     end
 
-    desc 'index', 'Reindexes a music collection'
-    def index
+    desc 'index DIRECTORY', 'Reindexes a music collection'
+    def index directory
+      Hearken::Indexing::Indexer.new(directory).execute
     end
 
     desc 'console', 'Enters console for queuing and playing tracks'
