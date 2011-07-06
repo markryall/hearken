@@ -46,5 +46,6 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
+* Fix or remove 'recent' - it should sort library based on file modification date
 * Get working on linux
 * Get working on windows

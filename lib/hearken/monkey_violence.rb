@@ -12,10 +12,10 @@ class String
   end
 
   def escape_for_sh
-    self.escape_for_sh_quoted.escape(" ").escape2("&").escape2(";").escape("!").escape("(").escape(")").escape2("'")
+    self.escape2("\`").escape(" ").escape2("&").escape2(";").escape("!").escape("(").escape(")").escape2("'")
   end
 
   def escape_for_sh_quoted
-    self.escape2("`")
+    self.escape2("\`")
   end
 end

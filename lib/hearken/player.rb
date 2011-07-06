@@ -81,7 +81,7 @@ module Hearken
           @library.with_track(id) do |track|
             notify_started track
             register track
-            player_pid = path.to_player
+            player_pid = path.escape2("\`").to_player
             Process.wait player_pid
             notify_finished track
           end

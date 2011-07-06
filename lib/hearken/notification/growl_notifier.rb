@@ -10,6 +10,6 @@ class Hearken::Notification::GrowlNotifier
   end
 
   def started track
-    `growlnotify -t "Hearken" --image #{@image_path} -m \"#{track.to_short_s.escape_for_sh_quoted}\"` if @growlnotify
+    `growlnotify -t "Hearken unto ..." --image #{@image_path} -m \"#{track.to_short_s.escape_for_sh_quoted}\"` if @growlnotify
   end
 end

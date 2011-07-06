@@ -28,7 +28,7 @@ module Hearken
       with :show_properties, 'show'
       with :restart, 'next'
       with :enqueue, '+'
-      with_all *%w{reload search start stop scrobbling shuffle list setup_scrobbling recent flush}
+      with_all *%w{reload search start stop scrobbling shuffle list setup_scrobbling recent flush }
     end
   end
 end
