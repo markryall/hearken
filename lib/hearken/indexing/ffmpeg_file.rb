@@ -1,11 +1,12 @@
 require 'hearken/indexing/executor'
+require 'hearken/monkey_violence'
 
 class Hearken::Indexing::FfmpegFile
   include Hearken::Indexing::Executor
 
   def initialize path
     extract_file_attributes path
-    content = execute "ffmpeg -i #{clean_path @path}"
+    content = execute "ffmpeg -i #{@path.escape_for_sh}"
     state = :draining
     @meta = {}
     content.each_line do |line|

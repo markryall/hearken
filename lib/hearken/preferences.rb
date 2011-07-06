@@ -1,16 +1,17 @@
+require 'hearken/paths'
+require 'hearken/monkey_violence'
+
 module Hearken
   class Preferences
+    include Hearken::Paths
+
     def initialize
-      @preference_path = home_path '.hearken'
-      if File.exists? @preference_path
-        @preferences = YAML.load File.read(@preference_path)
+      create_paths
+      if File.exists? preferences_path
+        @preferences = YAML.load_file preferences_path
       else
         @preferences = {}
       end
-    end
-
-    def home_path *paths
-      File.join File.expand_path('~'), *paths
     end
 
     def [] key
@@ -23,7 +24,7 @@ module Hearken
     end
 
     def persist
-      File.open(@preference_path, 'w') {|f| f.puts @preferences.to_yaml}
+      File.open(preferences_path, 'w') {|f| f.puts @preferences.to_yaml}
     end
   end
 end

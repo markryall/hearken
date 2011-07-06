@@ -1,3 +1,5 @@
+require 'hearken/monkey_violence'
+
 module Hearken::Notification
 end
 
@@ -8,6 +10,6 @@ class Hearken::Notification::GrowlNotifier
   end
 
   def started track
-    `growlnotify -t "Hearken" --image #{@image_path} -m '#{track.to_short_s}'` if @growlnotify
+    `growlnotify -t "Hearken" --image #{@image_path} -m \"#{track.to_short_s.escape_for_sh_quoted}\"` if @growlnotify
   end
 end

@@ -1,6 +1,12 @@
 = next
 
-* Fixed bug in setup_scrobbling command
+* Fixed bug with growl (correctly escaping characters in message)
+* moved all configuration, queues and index to a .hearken directory
+
+= 0.0.3
+
+* Fixed bug in setup_scrobbling command (using $stdin directly - 'gets' seems to have been aliased by thor)
+* Added growl notification
 
 = 0.0.2
 

@@ -1,4 +1,5 @@
 require 'splat'
+require 'fileutils'
 
 require 'hearken/queue'
 require 'hearken/scrobbler'
@@ -17,6 +18,7 @@ module Hearken
       @notifiers = [@scrobbler, @growl]
       @library = Library.new preferences
       @library.reload
+      create_paths
     end
 
     def c text,colour

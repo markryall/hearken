@@ -1,6 +1,9 @@
 require 'hearken/track'
+require 'hearken/paths'
 
 class Hearken::Library
+  include Hearken::Paths
+
   FILE_FIELDS = %w{path timestamp}
   TAG_FIELDS = %w{album track title artist time date albumartist puid mbartistid mbalbumid mbalbumartistid asin}
   FIELDS = FILE_FIELDS + TAG_FIELDS
@@ -9,6 +12,7 @@ class Hearken::Library
   attr_reader :tracks
 
   def initialize preferences
+    create_paths
   end
 
   def count
@@ -28,10 +32,8 @@ class Hearken::Library
   end
 
   def reload
-    s = Time.now.to_i
-    path = File.expand_path('~')+'/.music'
     @tracks = []
-    File.open path do |file|
+    File.open index_path do |file|
       id = 0
       while line = file.gets
         row = line.chomp.split '<->'
@@ -40,7 +42,6 @@ class Hearken::Library
         @tracks << track
         id += 1
       end
-    end if File.exist? path
-    puts "Reloaded db with #{@tracks.size} tracks in #{Time.now.to_i-s} seconds"
+    end if File.exist? index_path
   end
 end
