@@ -1,6 +1,5 @@
 module Hearken
   module Indexing
-    PATH = File.expand_path('~')+'/.music'
   end
 end
 

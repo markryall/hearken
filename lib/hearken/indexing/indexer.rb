@@ -1,15 +1,19 @@
 require 'splat'
+require 'hearken/paths'
 require 'hearken/indexing/persistant_traverser'
 
 class Hearken::Indexing::Indexer
+  include Hearken::Paths
+
   def initialize path
+    create_paths
     @path = path
   end
 
   def execute
     start = Time.now
     count = 0
-    traverser = Hearken::Indexing::PersistantTraverser.new @path, Hearken::Indexing::PATH
+    traverser = Hearken::Indexing::PersistantTraverser.new @path, index_path
 
     traverser.each do |audio_file|
       count += 1
