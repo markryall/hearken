@@ -11,6 +11,7 @@ describe Hearken::Player do
     Hearken::Scrobbler.stub!(:new).and_return scrobbler
     Hearken::Library.stub!(:new).and_return library
     library.stub! :reload
+    scrobbler.stub! :enabled=
   end
 
   describe '#current' do
