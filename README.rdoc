@@ -26,13 +26,19 @@ Growl notification (as new tracks are played) will work but only if 'growlnotify
 
     hearken index DIRECTORY
 
-Will create a track index at ~/.music.  Note that this might take a while the first time you run it.
+Will create a track index at ~/.hearken/music.  Note that this might take a while the first time you run it.
 
 Subsequent runs will only query tags for new or modified files so should be fairly fast.
+
+The index can be regenerated while the console is running and reloaded using the 'reload' command.
 
 == Console
 
     hearken console
+
+This enters an interactive prompt where you can start/stop the player, search and enqueue tracks.
+
+The queue will be persisted to ~/.hearken/queue
 
 == Commands
 
@@ -43,6 +49,42 @@ will list all commands
     ? <command>
 
 will describe the use and purpose of a particular command
+
+== Main commands
+
+    search iver bon
+
+Searches for tracks with 'bon' and 'iver' in the track, artist or album name (this is case insensitive).
+
+Results will be displayed and the ids will be added to the clipboard (for convenient pasting to the '+' command).
+
+    + abc-f 123 456
+
+Enqueues tracks with ids abc, abd, abe, abf, 123 and 456
+
+    start
+
+Starts the player
+
+    stop
+
+Stops the player
+
+    next
+
+Stops and restarts the player (which will kill the currently playing track)
+
+    setup_scrobbling
+
+Runs through a wizard to configure scrobbling to last.fm
+
+	scrobbling on
+
+Turns scrobbling on (has no effect if scrobbling has not been configured)
+
+	scrobbling off
+
+Turns scrobbling off
 
 = Future plans for world domination
 
