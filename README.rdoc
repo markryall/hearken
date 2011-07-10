@@ -46,6 +46,11 @@ will describe the use and purpose of a particular command
 
 = Future plans for world domination
 
+* move 'current_song' from working directory to .hearken directory
 * Fix or remove 'recent' - it should sort library based on file modification date
+* add a '-' command to remove tracks from queue
+* add a command to launch last.fm profile (for track history)
+* put some content on wiki to explain usage (especially use of track ranges '+ eft-z')
+* eliminate last.fm setup command once setup and add lastfm commands only when setup
 * Get working on linux
 * Get working on windows
