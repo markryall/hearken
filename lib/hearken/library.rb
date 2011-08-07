@@ -38,10 +38,6 @@ class Hearken::Library
         @tracks << track
         id += 1
       end
-      @tracks.sort! do |a, b|
-        tc = a.timestamp <=> b.timestamp
-        tc == 0 ? a.id <=> b.id : tc
-      end
     end if File.exist? index_path
   end
 end

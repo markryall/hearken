@@ -6,8 +6,12 @@ class Hearken::Command::Recent
   help 'lists the specified number of recently added albums'
   execute do |text|
     @player.library.reload unless @player.library.tracks
+    all_tracks = @player.library.tracks.sort do |a, b|
+      tc = a.timestamp <=> b.timestamp
+      tc == 0 ? a.id <=> b.id : tc
+    end
     maximum, current_album, tracks, total_count = text.to_i, nil, [], 0
-    @player.library.tracks.reverse.each do |track|
+    all_tracks.reverse.each do |track|
       unless current_album
         current_album = track.album
         tracks = [track]
