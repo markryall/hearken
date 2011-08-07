@@ -25,10 +25,10 @@ module Hearken
       at_exit { @player.stop }
       @prompt = "hearken > "
       with :status, "'"
-      with :show_properties, 'show'
       with :restart, 'next'
+      with :list, 'ls'
       with :enqueue, '+'
-      with_all *%w{reload search start stop scrobbling shuffle list setup_scrobbling recent flush }
+      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent flush}
     end
   end
 end
