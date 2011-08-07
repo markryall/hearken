@@ -26,7 +26,7 @@ class Hearken::Track
   end
 
   def to_s
-    "#{my(:search_id,:white)}: #{my(:artist, :yellow)} - #{my(:album,:cyan)} - #{my(:track,:magenta)} #{my(:title,:green)} (#{my(:time,:white)})"
+    "[#{my(:search_id,:white)}] #{my(:artist, :yellow)} #{my(:album,:cyan)} #{my(:track,:magenta)} #{my(:title,:green)} (#{my(:time,:white)})"
   end
 
   def to_short_s

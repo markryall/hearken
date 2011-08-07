@@ -5,10 +5,12 @@ require 'hearken/queue'
 require 'hearken/scrobbler'
 require 'hearken/notification/growl_notifier'
 require 'hearken/library'
+require 'hearken/colour'
 
 module Hearken
   class Player
     include Queue
+    include Colour
     attr_reader :library, :scrobbler
 
     def initialize preferences
@@ -21,16 +23,12 @@ module Hearken
       create_paths
     end
 
-    def c text,colour
-      text.to_s.foreground colour
-    end
-
     def status
       if @pid
         track = self.current
-        puts "Since #{c Time.at(track.started), :cyan}\n\t#{track}"
         played = Time.now.to_i-track.started
-        puts "#{c played, :yellow} seconds (#{c track.time.to_i-played, :yellow} remaining)" if track.time
+        timing = "(#{c track.time.to_i-played, :yellow} remaining)" if track.time
+        puts "#{c Time.at(track.started).strftime("%H:%M:%S %d/%m/%Y"), :blue}: #{track} #{timing}"
       else
         puts 'not playing'.foreground(:yellow)
       end

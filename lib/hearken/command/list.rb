@@ -1,7 +1,10 @@
 require 'hearken/command'
+require 'hearken/colour'
 
 class Hearken::Command::List
   include Hearken::Command
+  include Hearken::Colour
+
   usage '*<word>'
   help <<EOF
 lists the contents of the track queue
@@ -24,6 +27,6 @@ EOF
 
   def show time, track
     return unless @terms.empty? or @terms.all? {|term| track.search_string.include? term }
-    puts time ? "#{time.to_s.foreground(:blue)}\n\t#{track}" : track
+    puts time ? "#{c time.strftime("%H:%M:%S %d/%m/%Y"), :blue} #{track}" : track
   end
 end

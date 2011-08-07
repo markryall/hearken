@@ -1,7 +1,10 @@
 require 'hearken/command'
+require 'hearken/colour'
 
 class Hearken::Command::Recent
   include Hearken::Command
+  include Hearken::Colour
+
   usage '<count>'
   help 'lists the specified number of recently added albums'
   execute do |text|
@@ -20,7 +23,7 @@ class Hearken::Command::Recent
       if current_album==track.album
         tracks << track
       else
-        puts "#{current_album} - #{extract_artist tracks} - #{tracks.size} tracks (#{tracks.last.search_id}-#{tracks.first.search_id})"
+        puts "#{c extract_artist(tracks), :yellow} #{c current_album, :cyan} #{tracks.size} tracks [#{tracks.last.search_id}-#{tracks.first.search_id}]"
         current_album = track.album
         tracks = [track]
         total_count += 1
