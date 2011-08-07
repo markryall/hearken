@@ -1,3 +1,9 @@
+= 0.0.5
+
+* fixed 'recent' command - the library is sorted on file modification date
+* moved 'current_song' from working directory to .hearken directory
+* Changed dequeue to return track instead of id - this fixed a bug where reindexing would cause player to start playing the wrong files.
+
 = 0.0.4
 
 * Partially fixed bug with growl (correctly escaping characters in message)

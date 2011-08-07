@@ -88,8 +88,6 @@ Turns scrobbling off
 
 = Future plans for world domination
 
-* move 'current_song' from working directory to .hearken directory
-* Fix or remove 'recent' - it should sort library based on file modification date
 * add a '-' command to remove tracks from queue
 * add a command to launch last.fm profile (for track history)
 * put some content on wiki to explain usage (especially use of track ranges '+ eft-z')
