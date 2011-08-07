@@ -23,10 +23,6 @@ class Hearken::Library
     @tracks[id]
   end
 
-  def path row
-    row.path
-  end
-
   def with_track id
     yield @tracks[id]
   end

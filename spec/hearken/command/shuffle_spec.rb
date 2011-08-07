@@ -13,9 +13,13 @@ describe Hearken::Command::Shuffle do
   end
 
   it 'should dequeue all tracks, shuffle then enqueue them' do
-    @player.should_receive(:dequeue).and_return(1)
-    @player.should_receive(:dequeue).and_return(2)
-    @player.should_receive(:dequeue).and_return(3)
+    track = stub 'track'
+    track.should_receive(:id).and_return 1
+    track.should_receive(:id).and_return 2
+    track.should_receive(:id).and_return 3
+    @player.should_receive(:dequeue).and_return track
+    @player.should_receive(:dequeue).and_return track
+    @player.should_receive(:dequeue).and_return track
     @player.should_receive(:dequeue).and_return nil
 
     @player.should_receive(:enqueue).with 3

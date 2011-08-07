@@ -26,9 +26,8 @@ module Hearken::Queue
       file = Dir.glob('*.song').sort.first
       return nil unless file
       hash = YAML.load_file file
-      id = hash[:id] if hash
       FileUtils.rm file
-      id
+      hash
     end
   end
 end

@@ -37,12 +37,16 @@ module Hearken
     end
 
     def current
-      (@pid and File.exist?('current_song')) ? YAML.load_file('current_song') : nil
+      in_base_dir do
+        (@pid and File.exist?('current_song')) ? YAML.load_file('current_song') : nil
+      end
     end
 
     def register track
       track.started = Time.now.to_i
-      File.open('current_song', 'w') {|f| f.print track.to_yaml }
+      in_base_dir do
+        File.open('current_song', 'w') {|f| f.print track.to_yaml }
+      end
     end
 
     def notify_started track
@@ -57,6 +61,10 @@ module Hearken
       @scrobbler.enabled = tf
     end
 
+    def random_track      
+      @library.row (rand * @library.count).to_i
+    end
+
     def start
       return if @pid
       @pid = fork do
@@ -65,26 +73,18 @@ module Hearken
           Process.kill 'TERM', player_pid if player_pid
           exit
         end
-        total_tracks = @library.count
         loop do
-          id = dequeue || (rand * total_tracks).to_i
-          row = @library.row id
-          unless row
-            puts "track with id #{id} did not exist"
+          track = dequeue || random_track
+          next unless track
+          unless File.exist? track.path
+            puts "skipping track as #{track.path} does not exist"
             next
           end
-          path = @library.path row
-          unless path and File.exist? path
-            puts "track with id #{id} did not refer to a file"
-            next
-          end
-          @library.with_track(id) do |track|
-            notify_started track
-            register track
-            player_pid = path.escape2("\`").to_player
-            Process.wait player_pid
-            notify_finished track
-          end
+          notify_started track
+          register track
+          player_pid = track.path.escape2("\`").to_player
+          Process.wait player_pid
+          notify_finished track
         end
       end
     end

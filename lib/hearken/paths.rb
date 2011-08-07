@@ -1,9 +1,10 @@
 require 'fileutils'
 
 module Hearken::Paths
-  attr_reader :preferences_path, :queue_path, :index_path
+  attr_reader :base_path, :preferences_path, :queue_path, :index_path
 
   def create_paths
+    @base_path = '.hearken'.from_home
     @preferences_path = '.hearken/config'.from_home
     @queue_path = '.hearken/queue'.from_home
     @index_path = '.hearken/music'.from_home
@@ -15,5 +16,9 @@ module Hearken::Paths
 
   def in_queue_dir
     Dir.chdir(queue_path) { yield }
+  end
+
+  def in_base_dir
+    Dir.chdir(base_path) { yield }
   end
 end
