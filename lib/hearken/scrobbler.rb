@@ -40,6 +40,11 @@ module Hearken
       send_to_scrobbler :love, track
     end
 
+    def profile
+      return unless @scrobbler
+      @scrobbler.with_profile_url {|url| url.to_launcher }
+    end
+
     def ask question
       print question
       $stdin.gets.chomp

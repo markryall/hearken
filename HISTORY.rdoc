@@ -1,3 +1,10 @@
+= 0.1.0
+
+* removed several dependencies - simple_scrobbler and thor
+* split hearken command into two
+* added 'love' command (to mark current track as loved)
+* added 'profile' command (to launch last.fm profile to see track history)
+
 = 0.0.5
 
 * fixed 'recent' command - the library is sorted on file modification date

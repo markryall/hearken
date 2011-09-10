@@ -29,7 +29,7 @@ module Hearken
       with :restart, 'next'
       with :list, 'ls'
       with :enqueue, '+'
-      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent flush love}
+      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent flush love profile}
     end
   end
 end

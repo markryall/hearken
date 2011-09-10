@@ -38,6 +38,10 @@ class Hearken::SimpleScrobbler
     @session_key
   end
 
+  def with_profile_url
+    yield "http://www.last.fm/user/#{user}" if user
+  end
+
   # http://www.last.fm/api/show?service=443
   def scrobble artist, title, params={}
     lfm_track 'track.scrobble', artist, title, params

@@ -38,6 +38,10 @@ module Hearken
       @scrobbler.love current
     end
 
+    def profile
+      @scrobbler.profile
+    end
+
     def current
       in_base_dir do
         (@pid and File.exist?('current_song')) ? YAML.load_file('current_song') : nil
