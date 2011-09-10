@@ -30,7 +30,8 @@ module Hearken
       with :list, 'ls'
       with :enqueue, 'add'
       with :remove, 'rm'
-      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent love profile}
+      with :start, 'play'
+      with_all *%w{reload search stop scrobbling shuffle setup_scrobbling recent love profile}
     end
   end
 end

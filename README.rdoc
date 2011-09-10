@@ -63,7 +63,7 @@ Results will be displayed and the ids will be added to the clipboard (for conven
 
 Enqueues tracks with ids abc, abd, abe, abf, 123 and 456
 
-    start
+    play
 
 Starts the player
 
