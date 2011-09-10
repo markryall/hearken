@@ -73,6 +73,11 @@ module Hearken
 
     def start
       return if @pid
+      if @library.count == 0
+        puts 'Player can not be started with an empty library'
+        puts 'Please run "hearken_index" in another shell and then \'reload\''
+        return
+      end
       @pid = fork do
         player_pid = nil
         Signal.trap('TERM') do
