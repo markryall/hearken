@@ -34,6 +34,12 @@ module Hearken
       send_to_scrobbler :now_playing, track
     end
 
+    def love track
+      return unless @scrobbler and track
+      debug "Sending love to last fm: #{track}"
+      send_to_scrobbler :love, track
+    end
+
     def ask question
       print question
       $stdin.gets.chomp

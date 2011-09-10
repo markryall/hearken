@@ -12,9 +12,7 @@ class Hearken::SimpleScrobbler
 
   SCROBBLER_URL = 'http://ws.audioscrobbler.com/2.0/'
 
-  HandshakeError  = Class.new(RuntimeError)
   SubmissionError = Class.new(RuntimeError)
-  DataError       = Class.new(RuntimeError)
   SessionError    = Class.new(RuntimeError)
 
   def initialize api_key, secret, user, session_key=nil
@@ -41,19 +39,26 @@ class Hearken::SimpleScrobbler
   end
 
   # http://www.last.fm/api/show?service=443
-  def scrobble artist, track, params={}
-    doc = lfm :post, 'track.scrobble', params.merge(:sk => session_key, :artist => artist, :track => title)
-    status = doc.at('lfm')['status']
-    raise SubmissionError, status unless status == 'ok'
+  def scrobble artist, title, params={}
+    lfm_track 'track.scrobble', artist, title, params
   end
 
   # See http://www.last.fm/api/show?service=454 for more details
   def now_playing artist, title, params={}
-    doc = lfm :post, 'track.updateNowPlaying', params.merge(:sk => session_key, :artist => artist, :track => title)
+    lfm_track 'track.updateNowPlaying', artist, title, params
+  end
+
+  # http://www.last.fm/api/show?service=260
+  def love artist, title, params={}
+    lfm_track 'track.love', artist, title, params
+  end
+private
+  def lfm_track method, artist, title, params
+    doc = lfm :post, method, params.merge(:sk => session_key, :artist => artist, :track => title)
     status = doc.at('lfm')['status']
     raise SubmissionError, status unless status == 'ok'
   end
-private
+
   def lfm get_or_post, method, parameters={}
     p = signed_parameters parameters.merge :api_key => api_key, :method => method
     debug p.inspect
