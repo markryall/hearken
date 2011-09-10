@@ -24,17 +24,18 @@ Growl notification (as new tracks are played) will work but only if 'growlnotify
 
 == Indexing tracks
 
-    hearken index DIRECTORY
+    hearken_index DIRECTORY
 
-Will create a track index at ~/.hearken/music.  Note that this might take a while the first time you run it.
+Will create a track index at ~/.hearken/music.
 
-Subsequent runs will only query tags for new or modified files so should be fairly fast.
+Note that this will take a long time first time you run it if you have a large collection of music.  Subsequent
+runs will only query tags for new or modified files so will be very fast.
 
 The index can be regenerated while the console is running and reloaded using the 'reload' command.
 
 == Console
 
-    hearken console
+    hearken
 
 This enters an interactive prompt where you can start/stop the player, search and enqueue tracks.
 
@@ -73,6 +74,11 @@ Stops the player
     next
 
 Stops and restarts the player (which will kill the currently playing track)
+
+    love
+
+Tells last.fm that you love the current track (this will do nothing if last.fm is not configured or the player is
+stopped)
 
     setup_scrobbling
 
