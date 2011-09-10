@@ -28,8 +28,9 @@ module Hearken
       with :status, "'"
       with :restart, 'next'
       with :list, 'ls'
-      with :enqueue, '+'
-      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent flush love profile}
+      with :enqueue, 'add'
+      with :remove, 'rm'
+      with_all *%w{reload search start stop scrobbling shuffle setup_scrobbling recent love profile}
     end
   end
 end

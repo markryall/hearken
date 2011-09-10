@@ -4,6 +4,7 @@
 * split hearken command into two
 * added 'love' command (to mark current track as loved)
 * added 'profile' command (to launch last.fm profile to see track history)
+* replaced 'flush' with an 'rm' command that can remove tracks matches criteria
 
 = 0.0.5
 

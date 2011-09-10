@@ -80,6 +80,10 @@ Stops and restarts the player (which will kill the currently playing track)
 Tells last.fm that you love the current track (this will do nothing if last.fm is not configured or the player is
 stopped)
 
+    rm iver bon
+
+Removes any enqueued track with 'bon' and 'iver' in the track, artist or album name
+
     setup_scrobbling
 
 Runs through a wizard to configure scrobbling to last.fm
@@ -94,9 +98,5 @@ Turns scrobbling off
 
 = Future plans for world domination
 
-* add a '-' command to remove tracks from queue
-* add a command to launch last.fm profile (for track history)
-* put some content on wiki to explain usage (especially use of track ranges '+ eft-z')
-* eliminate last.fm setup command once setup and add lastfm commands only when setup
 * Get working on linux
 * Get working on windows
