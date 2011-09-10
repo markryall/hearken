@@ -1,5 +1,6 @@
 require 'shell_shock/context'
 
+require 'hearken'
 require 'hearken/player'
 require 'hearken/preferences'
 require 'hearken/command'
