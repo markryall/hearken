@@ -63,7 +63,8 @@ private
           track.title,
           :duration => track.time,
           :album => track.album,
-          :trackNumber => track.track.to_i
+          :trackNumber => track.track.to_i,
+          :timestamp => Time.now.to_i
       rescue Exception => e
         puts "Failed to scrobble: #{e}"
       end
