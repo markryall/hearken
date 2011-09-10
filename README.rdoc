@@ -88,11 +88,11 @@ Removes any enqueued track with 'bon' and 'iver' in the track, artist or album n
 
 Runs through a wizard to configure scrobbling to last.fm
 
-	scrobbling on
+    scrobbling on
 
 Turns scrobbling on (has no effect if scrobbling has not been configured)
 
-	scrobbling off
+    scrobbling off
 
 Turns scrobbling off
 
