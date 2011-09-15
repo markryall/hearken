@@ -95,8 +95,3 @@ Turns scrobbling on (has no effect if scrobbling has not been configured)
     scrobbling off
 
 Turns scrobbling off
-
-= Future plans for world domination
-
-* Get working on linux
-* Get working on windows
