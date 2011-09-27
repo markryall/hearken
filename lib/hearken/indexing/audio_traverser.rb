@@ -3,7 +3,7 @@ require 'hearken/indexing/file'
 
 class Hearken::Indexing::AudioTraverser
   attr_reader :current
-  EXTS = %w{m4a mp3 ogg wma}.map {|e| '.'+e }
+  EXTS = %w{m4a mp3 ogg wma flac aac}.map {|e| '.'+e }
 
   def initialize path
     @path = Pathname.new path

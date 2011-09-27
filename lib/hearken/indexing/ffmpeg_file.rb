@@ -18,25 +18,29 @@ class Hearken::Indexing::FfmpegFile
           if state == :metadata
             begin
               m = / *: */.match l
-              @meta[m.pre_match.strip] = m.post_match.strip if m
+              @meta[m.pre_match.strip.downcase.to_sym] = m.post_match.strip if m
             rescue ArgumentError => e
             end
           end
       end
     end
 
-    @title = @meta['TIT2'] || @meta['title']
-    @album = @meta['TALB'] || @meta ['album']
-    @artist = @meta['TPE1'] || @meta['TPE2'] || @meta['artist']
-    @albumartist = @meta['TSO2'] || @meta['album_artist']
-    @time = to_duration @meta['Duration']
-    @date = @meta['TDRC'] || @meta['TYER'] || @meta['date']
-    @track = @meta['TRCK'] || @meta['track']
-    @puid = @meta['MusicIP PUID']
-    @mbartistid = @meta['MusicBrainz Artist Id']
-    @mbalbumid = @meta['MusicBrainz Album Id']
-    @mbalbumartistid = @meta['MusicBrainz Album Artist Id']
-    @asin = @meta['ASIN']
+    @title = tag :title, :tit2
+    @album = tag :album, :talb
+    @artist = tag :artist, :tpe1, :tpe2
+    @albumartist = tag :album_artist, :tso2
+    @time = to_duration tag :duration
+    @date = tag :date, :tdrc, :tyer
+    @track = tag :track, :trck
+    @puid = tag :"musicip puid"
+    @mbartistid = tag :musicbrainz_artistid, :"musicbrainz artist id"
+    @mbalbumid = tag :musicbrainz_albumid,:"musicbrainz album id"
+    @mbalbumartistid = tag :musicbrainz_albumartistid, :"musicbrainz album artist id"
+    @asin = tag :asin
+  end
+
+  def tag *names
+    names.each { |name| return @meta[name] if @meta[name] }
   end
 
   def method_missing method
