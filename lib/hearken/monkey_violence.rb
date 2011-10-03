@@ -4,18 +4,18 @@ class String
   end
 
   def escape char
-    gsub(char, "\\#{char}")
+    gsub(char) { "\\#{char}" }
   end
 
-  def escape2 char
-    split(char).join("\\#{char}")
+  def escape_all chars
+    chars.inject(self) {|s,t| s.escape t }
   end
 
   def escape_for_sh
-    self.escape2("\`").escape(" ").escape2("&").escape2(";").escape("!").escape("(").escape(")").escape2("'")
+    self.escape_all " `';&!()$".scan(/./)
   end
 
   def escape_for_sh_quoted
-    self.escape2("\`")
+    self.escape '`'
   end
 end
