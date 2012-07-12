@@ -21,7 +21,7 @@ class Hearken::Indexing::Indexer
 
     show_progress start, count
 
-    system "play #{File.dirname(__FILE__)}/../../../media/applause.mp3"
+    system "play -q #{File.dirname(__FILE__)}/../../../media/applause.mp3"
   end
 private
   def show_progress start, count

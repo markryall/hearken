@@ -92,7 +92,7 @@ module Hearken
           end
           notify_started track
           register track
-          player_pid = spawn "play \"#{track.path.escape("\`")}\""
+          player_pid = spawn "play -q \"#{track.path.escape("\`")}\""
           Process.wait player_pid
           notify_finished track
         end
