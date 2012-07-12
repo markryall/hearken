@@ -41,7 +41,7 @@ module Hearken
 
     def profile
       return unless @scrobbler
-      @scrobbler.with_profile_url {|url| url.to_launcher }
+      @scrobbler.with_profile_url {|url| system "open #{url}" }
     end
 
     def ask question
