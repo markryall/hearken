@@ -1,4 +1,3 @@
-require 'splat'
 require 'hearken/simple_scrobbler'
 require 'hearken/debug'
 
@@ -55,7 +54,7 @@ module Hearken
       preferences['user'] = ask 'What is your lastfm user name ? '
       @scrobbler = SimpleScrobbler.new API_KEY, SECRET, preferences['user']
       preferences['session_key'] = @scrobbler.fetch_session_key do |url|
-        url.to_launcher
+        "open #{url}"
         ask 'Please hit enter when you\'ve allowed this application access to your account'
       end
       @preferences['lastfm'] = preferences

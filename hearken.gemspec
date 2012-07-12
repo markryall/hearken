@@ -16,6 +16,19 @@ This also extracts the tags from a collection of folders.
 
 This replaces and combines the functionality from a couple of other gems (audio_library and songbirdsh).
 EOF
+
+  s.post_install_message = <<EOF
+Hey - thanks for installing hearken.
+
+Before doing anything else, you should index your music collection by running:
+
+  hearken_index path_to_your_music_collection
+
+This could take a while if you have a large collection - you should hear some applause when it's done
+
+After that just run hearken to start playing, queueing and rocking out.
+EOF
+
   s.license = 'MIT'
   s.rubyforge_project = "hearken"
 
