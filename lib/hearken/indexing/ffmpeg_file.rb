@@ -41,6 +41,7 @@ class Hearken::Indexing::FfmpegFile
 
   def tag *names
     names.each { |name| return @meta[name] if @meta[name] }
+    nil
   end
 
   def method_missing method

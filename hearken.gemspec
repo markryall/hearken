@@ -24,7 +24,6 @@ EOF
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'splat', '~>0'
   s.add_dependency 'shell_shock', '~>0'
   s.add_dependency 'rainbow', '~> 1'
   s.add_dependency 'nokogiri', '~> 1'

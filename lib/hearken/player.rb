@@ -67,7 +67,7 @@ module Hearken
       @scrobbler.enabled = tf
     end
 
-    def random_track      
+    def random_track
       @library.row (rand * @library.count).to_i
     end
 
@@ -93,7 +93,7 @@ module Hearken
           end
           notify_started track
           register track
-          player_pid = track.path.escape2("\`").to_player
+          player_pid = spawn "play \"#{track.path.escape("\`")}\""
           Process.wait player_pid
           notify_finished track
         end

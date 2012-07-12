@@ -4,7 +4,7 @@ This is a command line shell for queuing and playing music tracks.
 
 It also extracts id3 tags from audio files for faster search.
 
-This will eventually be platform independent but at this stage has only been used on mac os x
+This may may be platform independent but at this stage has only been used on mac os x
 
 = Usage
 
@@ -19,6 +19,10 @@ Here you sit expectantly in front of a computer at the command line.
 Tags are currently extracted using ffmpeg.  On mac os x, this can be installed easily using brew:
 
     brew install ffmpeg
+
+Tracks are played using sox (afplay is preinstalled on a mac but does not support as many audio formats) which can also be installed with brew:
+
+    brew install sox
 
 Growl notification (as new tracks are played) will work but only if 'growlnotify' is detected on the path.
 
