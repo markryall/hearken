@@ -16,13 +16,15 @@ This also extracts the tags from a collection of folders.
 
 This replaces and combines the functionality from a couple of other gems (audio_library and songbirdsh).
 EOF
-
+  s.license = 'MIT'
   s.rubyforge_project = "hearken"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+
+  s.required_ruby_version = '>= 1.9.2'
 
   s.add_dependency 'shell_shock', '~>0'
   s.add_dependency 'rainbow', '~> 1'

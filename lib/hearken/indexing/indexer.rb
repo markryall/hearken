@@ -1,4 +1,3 @@
-require 'splat'
 require 'hearken/paths'
 require 'hearken/indexing/persistant_traverser'
 
@@ -22,7 +21,7 @@ class Hearken::Indexing::Indexer
 
     show_progress start, count
 
-    (File.dirname(__FILE__)+'/../../../media/applause.mp3').to_player
+    system "play #{File.dirname(__FILE__)}/../../../media/applause.mp3"
   end
 private
   def show_progress start, count
