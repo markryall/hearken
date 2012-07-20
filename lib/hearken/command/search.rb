@@ -19,6 +19,6 @@ EOF
       end
     end
     puts "Found #{matches.size} matches (ids have been placed on clipboard)"
-    matches.join(' ').to_clipboard
+    IO.popen('pbcopy','w') { |clipboard| clipboard.print matches.join ' ' }
   end
 end
