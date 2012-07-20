@@ -18,7 +18,7 @@ class Hearken::Indexing::FfmpegFile
           if state == :metadata
             begin
               m = / *: */.match l
-              @meta[m.pre_match.strip.downcase.to_sym] = m.post_match.strip if m
+              add_meta m.pre_match.strip.downcase.to_sym, m.post_match.strip if m
             rescue ArgumentError => e
             end
           end
@@ -37,6 +37,10 @@ class Hearken::Indexing::FfmpegFile
     @mbalbumid = tag :musicbrainz_albumid,:"musicbrainz album id"
     @mbalbumartistid = tag :musicbrainz_albumartistid, :"musicbrainz album artist id"
     @asin = tag :asin
+  end
+
+  def add_meta key, value
+    @meta[key] ||= value
   end
 
   def tag *names
