@@ -92,10 +92,18 @@ module Hearken
           end
           notify_started track
           register track
-          player_pid = spawn "play -q \"#{track.path.escape("\`")}\""
+          player_pid = spawn play_command track.path
           Process.wait player_pid
           notify_finished track
         end
+      end
+    end
+
+    def play_command path
+      if %w{m4a mp3}.include? path.split('.').last
+        "afplay \"#{path.escape("\`")}\"" # 2>&1 > /dev/null"
+      else
+        "play -q \"#{path.escape("\`")}\""
       end
     end
 
