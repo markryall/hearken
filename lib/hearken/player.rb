@@ -51,6 +51,7 @@ module Hearken
       track.started = Time.now.to_i
       in_base_dir do
         File.open('current_song', 'w') {|f| f.print track.to_yaml }
+        File.open('history', 'a') {|f| f.puts "#{track.started},#{track.path}"}
       end
     end
 
@@ -101,15 +102,19 @@ module Hearken
 
     def play_command path
       if %w{m4a mp3}.include? path.split('.').last
-        "afplay \"#{path.escape("\`")}\"" # 2>&1 > /dev/null"
+        "afplay \"#{path.escape("\`")}\""
       else
         "play -q \"#{path.escape("\`")}\""
+      end.tap do |command|
+        in_base_dir do
+          File.open('player', 'a') {|f| f.puts command }
+        end
       end
     end
 
     def stop
       return unless @pid
-      Process.kill 'TERM', @pid 
+      Process.kill 'TERM', @pid
       @pid = nil
     end
 
