@@ -1,3 +1,10 @@
+= 0.1.1
+
+* added use of sox to play more audio file formats (now m4a and mp3 with afplay and sox for everything else)
+* fixed some issues with the parsing of ffmpeg output to get correct tag information
+* added logging of played tracks to history file
+* removed splat dependency (because it is just silly)
+
 = 0.1.0
 
 * removed several dependencies - simple_scrobbler and thor
