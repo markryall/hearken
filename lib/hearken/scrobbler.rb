@@ -12,6 +12,10 @@ module Hearken
       @preferences = preferences
     end
 
+    def enabled
+      !!@scrobbler
+    end
+
     def enabled= tf
       @scrobbler = nil
       if @preferences['lastfm'] and tf

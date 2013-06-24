@@ -63,7 +63,11 @@ module Hearken
       @notifiers.each {|notifier| notifier.finished track if notifier.respond_to? :finished}
     end
 
-    def scrobbling tf
+    def scrobbling
+      @scrobbler.enabled
+    end
+
+    def scrobbling= tf
       @scrobbler.enabled = tf
     end
 
