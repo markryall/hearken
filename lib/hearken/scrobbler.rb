@@ -1,3 +1,4 @@
+require 'hearken/preferences'
 require 'hearken/simple_scrobbler'
 require 'hearken/debug'
 
@@ -8,7 +9,7 @@ module Hearken
     SECRET = 'ab77019c84eef8bc16bcfd5ba8db0c5d'
     include Debug
 
-    def initialize preferences
+    def initialize preferences=Hearken::Preferences.new
       @preferences = preferences
     end
 

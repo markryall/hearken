@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+$: << File.dirname(__FILE__)+'/../lib'
+
+command = ARGV.shift
+
+unless %w{setup start finish}.include? command
+  puts 'usage:'
+  puts '  hearken_scrobble setup'
+  puts '  hearken_scrobble start PATH_TO_AUDIO_FILE'
+  puts '  hearken_scrobble finish PATH_TO_AUDIO_FILE'
+  exit 0
+end
+
+require 'hearken/indexing/ffmpeg_file'
+require 'hearken/scrobbler'
+
+scrobbler = Hearken::Scrobbler.new
+scrobbler.enabled = true
+
+if command == 'setup'
+  scrobbler.setup
+  exit 0
+end
+
+file = ARGV.shift
+track = Hearken::Indexing::FfmpegFile.from_file file
+
+if command == 'start'
+  scrobbler.started track
+elsif command == 'finish'
+  scrobbler.finished track
+else
+  puts 'unknown command'
+end

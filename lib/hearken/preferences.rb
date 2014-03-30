@@ -1,5 +1,8 @@
+require 'yaml'
 require 'hearken/paths'
 require 'hearken/monkey_violence'
+
+module Hearken; end
 
 module Hearken
   class Preferences
