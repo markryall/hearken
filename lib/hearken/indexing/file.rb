@@ -1,5 +1,7 @@
+module Hearken; module Indexing; end; end
+
 class Hearken::Indexing::File
-  def initialize path, root
+  def initialize path, root=nil
     @path, @root = path, root
   end
 

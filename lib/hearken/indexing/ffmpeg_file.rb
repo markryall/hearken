@@ -1,8 +1,15 @@
+require 'hearken/indexing/file'
 require 'hearken/indexing/executor'
 require 'hearken/monkey_violence'
+require 'pathname'
 
 class Hearken::Indexing::FfmpegFile
   include Hearken::Indexing::Executor
+
+  def self.from_file path
+    file = Hearken::Indexing::File.new Pathname.new path
+    Hearken::Indexing::FfmpegFile.new file
+  end
 
   def initialize path
     extract_file_attributes path
