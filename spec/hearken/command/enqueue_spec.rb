@@ -8,16 +8,16 @@ describe Hearken::Command::Enqueue do
   with_help 'enqueues the list of songs with the specified ids'
 
   before do
-    @player = stub('player')
+    @player = double 'player'
     @command = Hearken::Command::Enqueue.new @player
   end
 
   it 'should enqueue whatever is returned from the expander' do
-    expander = stub('expander')
-    Hearken::RangeExpander.should_receive(:new).and_return(expander)
-    expander.should_receive(:expand).with('some text').and_return([1,2,3])
+    expander = double 'expander'
+    allow(Hearken::RangeExpander).to receive(:new) { expander }
+    allow(expander).to receive(:expand).with('some text') { [1,2,3] }
 
-    [1,2,3].each {|id| @player.should_receive(:enqueue).with id}
+    [1,2,3].each {|id| expect(@player).to receive(:enqueue).with(id) }
 
     @command.execute "some text"
   end

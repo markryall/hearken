@@ -7,22 +7,22 @@ describe Hearken::RangeExpander do
   end
 
   it 'should expand single values' do
-    @expander.expand('123').should == [1371]
+    expect(@expander.expand('123')).to eq([1371])
   end
 
   it 'should expand multiple values separated by any non digit' do
-    @expander.expand("123 \t 456  , 789 ").should == [1371, 5370, 9369]
+    expect(@expander.expand("123 \t 456  , 789 ")).to eq([1371, 5370, 9369])
   end
 
   it 'should expand a fully specified range' do
-    @expander.expand(" 456-45i ").should == (5370..5382).to_a
+    expect(@expander.expand(" 456-45i ")).to eq((5370..5382).to_a)
   end
 
   it 'should expand an abbreviated range' do
-    @expander.expand(" 456-i ").should == (5370..5382).to_a
+    expect(@expander.expand(" 456-i ")).to eq((5370..5382).to_a)
   end
 
   it 'should expand ids for a range' do
-    @expander.expand_to_ids(" s-z ").should == %w{s t u v w x y z}
+    expect(@expander.expand_to_ids(" s-z ")).to eq(%w{s t u v w x y z})
   end
 end

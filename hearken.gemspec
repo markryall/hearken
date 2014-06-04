@@ -44,5 +44,5 @@ EOF
   s.add_dependency 'nokogiri', '~> 1'
 
   s.add_development_dependency 'rake', '~>0'
-  s.add_development_dependency 'rspec', '~>2'
+  s.add_development_dependency 'rspec', '~>3'
 end

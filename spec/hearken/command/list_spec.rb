@@ -11,21 +11,21 @@ when playing, approximate times for each track will be displayed
 EOF
 
   before do
-    @player = stub('player')
+    @player = double 'player'
     @command = Hearken::Command::List.new @player
   end
 
   it 'should display nothing when there is no current track and nothing enqueued' do
-    @player.stub!(:current).and_return nil
-    @player.stub! :each
+    allow(@player).to receive(:current) { nil }
+    allow(@player).to receive(:each)
     @command.execute ''
   end
 
   it 'should display queue contents with no times when there is no current track' do
-    track = stub 'track'
-    @player.stub!(:current).and_return nil
-    @player.stub!(:each).and_yield track
-    @command.should_receive(:puts).with track
+    track = double 'track'
+    allow(@player).to receive(:current) { nil }
+    allow(@player).to receive(:each).and_yield track
+    expect(@command).to receive(:puts).with(track)
     @command.execute ''
   end
 end
