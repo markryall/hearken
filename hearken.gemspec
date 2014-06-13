@@ -40,7 +40,7 @@ EOF
   s.required_ruby_version = '>= 1.9.2'
 
   s.add_dependency 'shell_shock', '~>0'
-  s.add_dependency 'rainbow', '~> 1'
+  s.add_dependency 'rainbow', '~> 2'
   s.add_dependency 'nokogiri', '~> 1'
 
   s.add_development_dependency 'rake', '~>0'

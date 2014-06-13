@@ -1,8 +1,10 @@
 require 'hearken/tagged'
-require 'rainbow'
+require 'hearken/colour'
 
 class Hearken::Track
   include Hearken::Tagged
+  include Hearken::Colour
+
   attr_accessor :id, :started
 
   def initialize id=nil
@@ -34,6 +36,6 @@ class Hearken::Track
   end
 
   def my field, colour
-    self.send(field).to_s.foreground(colour)
+    c self.send(field).to_s, colour
   end
 end

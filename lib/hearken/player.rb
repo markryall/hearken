@@ -29,7 +29,7 @@ module Hearken
         timing = "(#{c track.time.to_i-played, :yellow} remaining)" if track.time
         puts "#{c Time.at(track.started).strftime("%H:%M:%S %d/%m/%Y"), :blue}: #{track} #{timing}"
       else
-        puts 'not playing'.foreground(:yellow)
+        puts c 'not playing', :yellow
       end
     end
 
