@@ -30,19 +30,16 @@ After that just run hearken to start playing, queueing and rocking out.
 EOF
 
   s.license = 'MIT'
-  s.rubyforge_project = "hearken"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = '>= 1.9.2'
-
-  s.add_dependency 'shell_shock', '~>0'
+  s.add_dependency 'shell_shock'
   s.add_dependency 'rainbow', '~> 2'
-  s.add_dependency 'nokogiri', '~> 1'
+  s.add_dependency 'nokogiri'
 
-  s.add_development_dependency 'rake', '~>0'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~>3'
 end
