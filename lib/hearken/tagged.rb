@@ -3,8 +3,7 @@
 module Hearken
   module Tagged
     FILE_FIELDS = %w[path timestamp].freeze
-    TAG_FIELDS = %w[album track title artist time date albumartist puid mbartistid mbalbumid mbalbumartistid
-                    asin].freeze
+    TAG_FIELDS = %w[album track title artist time date albumartist puid mbartistid mbalbumid mbalbumartistid asin].freeze
     FIELDS = FILE_FIELDS + TAG_FIELDS
 
     attr_accessor(*FIELDS.map(&:to_sym))

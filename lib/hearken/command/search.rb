@@ -16,8 +16,6 @@ module Hearken
       def execute(text)
         terms = text.split(/\W/)
         matches = []
-        @library.reload if @library.tracks.count.zero?
-        matches = []
         @library.tracks.each do |track|
           if terms.all? { |term| track.search_string.include? term }
             puts track
@@ -25,9 +23,12 @@ module Hearken
           end
         end
 
-        puts "Found #{matches.size} matches (ids have been placed on clipboard)"
-
-        IO.popen("pbcopy", "w") { |clipboard| clipboard.print matches.join " " }
+        if matches.size < 50
+          IO.popen("pbcopy", "w") { |clipboard| clipboard.print matches.join " " }
+          puts "Found #{matches.size} matches (ids have been placed on clipboard)"
+        else
+          puts "Found #{matches.size} matches"
+        end
       end
     end
   end

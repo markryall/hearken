@@ -17,6 +17,7 @@ module Hearken
 
       def execute(text)
         `mkdir -p /tmp/queue`
+        count = (Time.now.to_f * 1000).to_i
         @expander.expand(text).each do |id|
           @library.with_track id do |track|
             meta = {
@@ -26,7 +27,8 @@ module Hearken
               length: track.time.to_i,
               path: track.path
             }
-            File.open("/tmp/queue/#{(Time.now.to_f * 1000).to_i}.yml", "w") { |f| f.puts meta.to_yaml }
+            File.open("/tmp/queue/#{count}.yml", "w") { |f| f.puts meta.to_yaml }
+            count += 1
           end
         end
       end

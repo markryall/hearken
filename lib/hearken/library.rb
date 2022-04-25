@@ -18,6 +18,7 @@ module Hearken
     def initialize
       @tracks = []
       create_paths
+      reload
     end
 
     def count

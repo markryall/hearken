@@ -1,41 +1,53 @@
-require 'hearken/tagged'
-require 'hearken/colour'
+# frozen_string_literal: true
 
-class Hearken::Track
-  include Hearken::Tagged
-  include Hearken::Colour
+require "hearken/tagged"
+require "hearken/colour"
 
-  attr_accessor :id, :started
+module Hearken
+  class Track
+    include Hearken::Tagged
+    include Hearken::Colour
 
-  def initialize id=nil
-    @id = id
-  end
+    attr_accessor :id, :started
 
-  def [] key
-    self.send key
-  end
+    def initialize(id = nil)
+      @id = id
+    end
 
-  def valid?
-    @track
-  end
+    def [](key)
+      send key
+    end
 
-  def search_id
-    id.to_s 36
-  end
+    def valid?
+      @track
+    end
 
-  def search_string
-    "#{self.artist.to_s.downcase}#{self.album.to_s.downcase}#{self.title.to_s.downcase}"
-  end
+    def search_id
+      id.to_s 36
+    end
 
-  def to_s
-    "[#{my(:search_id,:white)}] #{my(:artist, :yellow)} #{my(:album,:cyan)} #{my(:track,:magenta)} #{my(:title,:green)} (#{my(:time,:white)})"
-  end
+    def search_string
+      "#{artist.to_s.downcase}#{album.to_s.downcase}#{title.to_s.downcase}#{date}"
+    end
 
-  def to_short_s
-    "#{track} #{title}\n#{artist}\n#{album}"
-  end
+    def to_s
+      [
+        "[#{my(:search_id, :white)}]",
+        my(:artist, :yellow),
+        my(:album, :cyan),
+        my(:track, :magenta),
+        my(:title, :green),
+        my(:date, :white),
+        my(:time, :white)
+      ].join(" ")
+    end
 
-  def my field, colour
-    c self.send(field).to_s, colour
+    def to_short_s
+      "#{track} #{title}\n#{artist}\n#{album}"
+    end
+
+    def my(field, colour)
+      c send(field).to_s, colour
+    end
   end
 end
