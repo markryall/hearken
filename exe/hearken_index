@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH << ("#{File.dirname(__FILE__)}/../lib")
+
+require "hearken/indexing"
+
+unless ARGV.size == 1
+  puts "usage: hearken_index path_to_directory_containing_music_collection"
+  exit
+end
+
+Hearken::Indexing::Indexer.new(ARGV.shift).execute

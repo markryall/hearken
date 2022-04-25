@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-$: << File.dirname(__FILE__)+'/../lib'
-
-require 'hearken/console'
-
-Hearken::Console.new.push

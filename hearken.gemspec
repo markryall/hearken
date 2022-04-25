@@ -1,45 +1,48 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require 'hearken'
+# frozen_string_literal: true
 
-Gem::Specification.new do |s|
-  s.name        = "hearken"
-  s.version     = Hearken::VERSION
-  s.authors     = ["Mark Ryall"]
-  s.email       = ["mark@ryall.name"]
-  s.homepage    = "http://github.com/markryall/hearken"
-  s.summary     = "command line music player"
-  s.description = <<EOF
-A command line tool to enqueue and play music tracks.
+require_relative "lib/hearken"
 
-This also extracts the tags from a collection of folders.
+Gem::Specification.new do |spec|
+  spec.name        = "hearken"
+  spec.version     = Hearken::VERSION
+  spec.authors     = ["Mark Ryall"]
+  spec.email       = ["mark@ryall.name"]
+  spec.homepage    = "http://github.com/markryall/hearken"
+  spec.summary     = "command line music player"
+  spec.description = <<~EOF
+    A command line tool to enqueue and play music trackspec.
 
-This replaces and combines the functionality from a couple of other gems (audio_library and songbirdsh).
-EOF
+    This also extracts the tags from a collection of folderspec.
 
-  s.post_install_message = <<EOF
-Hey - thanks for installing hearken.
+    This replaces and combines the functionality from a couple of other gems (audio_library and songbirdsh).
+  EOF
 
-Before doing anything else, you should index your music collection by running:
+  spec.post_install_message = <<~EOF
+    Hey - thanks for installing hearken.
 
-  hearken_index path_to_your_music_collection
+    Before doing anything else, you should index your music collection by running:
 
-This could take a while if you have a large collection - you should hear some applause when it's done
+      hearken_index path_to_your_music_collection
 
-After that just run hearken to start playing, queueing and rocking out.
-EOF
+    This could take a while if you have a large collection - you should hear some applause when it's done
 
-  s.license = 'MIT'
+    After that just run hearken to start playing, queueing and rocking out.
+  EOF
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 2.6.0"
 
-  s.add_dependency 'shell_shock'
-  s.add_dependency 'rainbow', '~> 2'
-  s.add_dependency 'nokogiri'
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject do |f|
+      (f == __FILE__) || f.match(%r{\A(?:(?:test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
+    end
+  end
+  spec.bindir = "exe"
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec', '~>3'
+  spec.add_dependency "rainbow", "~> 2"
+  spec.add_dependency "shell_shock"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
