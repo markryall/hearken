@@ -1,7 +1,19 @@
-require 'hearken/command'
+# frozen_string_literal: true
 
-class Hearken::Command::Reload
-  include Hearken::Command
-  help 'reloads the contents of the music library for fast searching'
-  execute {|ignored| @player.library.reload }
+module Hearken
+  module Command
+    class Reload
+      def initialize(library)
+        @library = library
+      end
+
+      def help
+        "reload the contents of the music library for fast searching"
+      end
+
+      def execute(_text)
+        @library.reload
+      end
+    end
+  end
 end

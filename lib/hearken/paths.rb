@@ -1,24 +1,18 @@
-require 'fileutils'
+# frozen_string_literal: true
 
-module Hearken::Paths
-  attr_reader :base_path, :preferences_path, :queue_path, :index_path
+require "fileutils"
 
-  def create_paths
-    @base_path = '.hearken'.from_home
-    @preferences_path = '.hearken/config'.from_home
-    @queue_path = '.hearken/queue'.from_home
-    @index_path = '.hearken/music'.from_home
-    FileUtils.mv '.hearken'.from_home, '.hearken.tmp'.from_home if File.exist?('.hearken'.from_home) && File.file?('.hearken'.from_home)
-    FileUtils.mkdir_p '.hearken/queue'.from_home
-    FileUtils.mv '.hearken.tmp'.from_home, @preferences_path if File.exist? '.hearken.tmp'.from_home
-    FileUtils.mv '.music'.from_home, @index_path if File.exist? '.music'.from_home
-  end
+module Hearken
+  module Paths
+    attr_reader :base_path, :index_path
 
-  def in_queue_dir
-    Dir.chdir(queue_path) { yield }
-  end
+    def create_paths
+      @base_path = ".hearken".from_home
+      @index_path = ".hearken/music".from_home
+    end
 
-  def in_base_dir
-    Dir.chdir(base_path) { yield }
+    def in_base_dir(&block)
+      Dir.chdir(base_path, &block)
+    end
   end
 end

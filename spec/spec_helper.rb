@@ -1,16 +1,6 @@
-$: << File.expand_path('../../lib', __FILE__)
+# frozen_string_literal: true
 
-require 'bundler/setup'
-require 'rspec'
+$LOAD_PATH << File.expand_path("../lib", __dir__)
 
-module ShellShock
-  module CommandSpec
-    def with_usage text
-      it('should display usage') { expect(@command.usage).to eq(text) }
-    end
-
-    def with_help text
-      it('should display help') { expect(@command.help).to eq(text) }
-    end
-  end
-end
+require "bundler/setup"
+require "rspec"

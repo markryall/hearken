@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 module Hearken
   module Debug
-    def debug message
-      if ENV['DEBUG']
-        puts message 
-      end
+    def debug(message)
+      puts message if ENV["DEBUG"]
     end
 
     def pause
-      if ENV['DEBUG']
+      if ENV["DEBUG"]
         puts "Hit enter to continue"
         gets
       end
