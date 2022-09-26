@@ -1,32 +1,27 @@
-= Hearken
+# Hearken
 
-This is a command line shell for queuing and playing music tracks.
+This is a command line shell for queuing music tracks to be played
+by [vlcraptor](https://github.com/markryall/vlcraptor).
 
 It also extracts id3 tags from audio files for faster search.
 
 This may may be platform independent but at this stage has only been used on mac os x
 
-= Usage
+# Usage
 
 Here you sit expectantly in front of a computer at the command line.
 
-== Install
+## Install
 
     gem install hearken
 
-== Dependencies
+## Dependencies
 
 Tags are currently extracted using ffmpeg.  On mac os x, this can be installed easily using brew:
 
     brew install ffmpeg
 
-Tracks are played using sox (afplay is preinstalled on a mac but does not support as many audio formats) which can also be installed with brew:
-
-    brew install sox
-
-Growl notification (as new tracks are played) will work but only if 'growlnotify' is detected on the path.
-
-== Indexing tracks
+## Indexing tracks
 
     hearken_index DIRECTORY
 
@@ -37,15 +32,15 @@ runs will only query tags for new or modified files so will be very fast.
 
 The index can be regenerated while the console is running and reloaded using the 'reload' command.
 
-== Console
+## Console
 
     hearken
 
-This enters an interactive prompt where you can start/stop the player, search and enqueue tracks.
+This enters an interactive prompt where you can search and enqueue tracks.
 
 The queue will be persisted to ~/.hearken/queue
 
-== Commands
+## Commands
 
     ?
 
@@ -55,7 +50,7 @@ will list all commands
 
 will describe the use and purpose of a particular command
 
-== Main commands
+## Main commands
 
     search iver bon
 
@@ -63,39 +58,6 @@ Searches for tracks with 'bon' and 'iver' in the track, artist or album name (th
 
 Results will be displayed and the ids will be added to the clipboard (for convenient pasting to the '+' command).
 
-    + abc-f 123 456
+    enqueue abc-f 123 456
 
 Enqueues tracks with ids abc, abd, abe, abf, 123 and 456
-
-    play
-
-Starts the player
-
-    stop
-
-Stops the player
-
-    next
-
-Stops and restarts the player (which will kill the currently playing track)
-
-    love
-
-Tells last.fm that you love the current track (this will do nothing if last.fm is not configured or the player is
-stopped)
-
-    rm iver bon
-
-Removes any enqueued track with 'bon' and 'iver' in the track, artist or album name
-
-    setup_scrobbling
-
-Runs through a wizard to configure scrobbling to last.fm
-
-    scrobbling on
-
-Turns scrobbling on (has no effect if scrobbling has not been configured)
-
-    scrobbling off
-
-Turns scrobbling off
