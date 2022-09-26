@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 
     This could take a while if you have a large collection - you should hear some applause when it's done
 
-    After that just run hearken to start playing, queueing and rocking out.
+    After that just run hearken to start searching for and then queueing tracks.
   EOF
 
   spec.required_ruby_version = ">= 2.6.0"
