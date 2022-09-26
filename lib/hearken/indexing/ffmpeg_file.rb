@@ -13,7 +13,7 @@ class Hearken::Indexing::FfmpegFile
 
   def initialize path
     extract_file_attributes path
-    content = execute "ffmpeg -i #{@path.escape_for_sh}"
+    content = execute "ffprobe #{@path.escape_for_sh}"
     state = :draining
     @meta = {}
     content.each_line do |line|

@@ -25,7 +25,7 @@ module Hearken
 
         show_progress start, count
 
-        system "afplay #{File.dirname(__FILE__)}/../../../media/applause.mp3"
+        system "afplay #{::File.dirname(__FILE__)}/../../../media/applause.mp3"
       end
 
       private
